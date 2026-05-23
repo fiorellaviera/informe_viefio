@@ -45,24 +45,28 @@ function App() {
           </p>
         </div>
 
-        {/* SECCIÓN 2: Espacio para la Infografía (¡Súper Cute!) */}
-        <div className="bg-white rounded-3xl shadow-sm border-2 border-dashed border-violet-100 p-10 flex flex-col items-center justify-center text-center">
+        {/* SECCIÓN 2: Infografía Final */}
+        <div className="bg-white rounded-3xl shadow-sm border border-pink-100 p-6 flex flex-col items-center justify-center text-center">
           <div className="p-4 bg-violet-100 rounded-full text-violet-500 mb-5">
             <ImageIcon size={40} />
           </div>
           <h3 className="text-2xl font-extrabold text-slate-700">Síntesis Visual</h3>
           <p className="text-violet-400 font-medium mt-1 mb-6">
-            Infografía Vertical del Caso EMCO
+            Análisis Gráfico del Incidente
           </p>
-          {/* Marcador de posición - ¡Lo reemplazas luego! */}
-          <div className="bg-rose-50/50 w-full max-w-sm h-[600px] rounded-3xl border border-pink-100 flex items-center justify-center p-6 shadow-inner">
-            <div className="flex flex-col items-center gap-3">
-              <Sparkles className="text-pink-300" size={30} />
-              <p className="text-slate-500 italic text-sm">
-                (Próximamente: Inserta tu imagen de infografía aquí)
-              </p>
-            </div>
+          
+          {/* Imagen de la Infografía */}
+          <div className="w-full max-w-2xl overflow-hidden rounded-2xl shadow-lg border border-pink-50">
+            <img 
+              src="/infografia.png" 
+              alt="Infografía Caso EMCO" 
+              className="w-full h-auto hover:scale-105 transition-transform duration-500"
+            />
           </div>
+          
+          <p className="mt-6 text-slate-400 text-xs italic">
+            Diseño conceptual realizado con asistencia de IA y editado para precisión académica.
+          </p>
         </div>
 
         {/* SECCIÓN 3: Informe Interactiva (Efecto Cascado/Acordeón) */}
