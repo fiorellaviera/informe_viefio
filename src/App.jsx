@@ -5,6 +5,7 @@ import Delitos from './components/Delitos'
 import Comparacion from './components/Comparacion'
 import Responsabilidades from './components/Responsabilidades'
 import Datos from './components/Datos'
+import Conclusiones from './components/Conclusiones'
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
         <Comparacion />
         <Responsabilidades />
         <Datos />
+        <Conclusiones />
       
 
       </main>
