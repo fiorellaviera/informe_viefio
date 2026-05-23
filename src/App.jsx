@@ -2,6 +2,7 @@ import { Shield, BookOpen } from 'lucide-react'
 import Resumen from './components/Resumen'
 import Marco from './components/Marco'
 import Delitos from './components/Delitos'
+import Comparacion from './components/Comparacion'
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
         <Resumen />
         <Marco />
         <Delitos />
+        <Comparacion />
+      
 
       </main>
 
