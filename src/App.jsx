@@ -1,6 +1,7 @@
 import { Shield, BookOpen } from 'lucide-react'
 import Resumen from './components/Resumen'
 import Marco from './components/Marco'
+import Delitos from './components/Delitos'
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
         {/* Aquí se cargarán los componentes de tu informe */}
         <Resumen />
         <Marco />
-        
+        <Delitos />
 
       </main>
 
