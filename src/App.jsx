@@ -4,6 +4,7 @@ import Marco from './components/Marco'
 import Delitos from './components/Delitos'
 import Comparacion from './components/Comparacion'
 import Responsabilidades from './components/Responsabilidades'
+import Datos from './components/Datos'
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Delitos />
         <Comparacion />
         <Responsabilidades />
+        <Datos />
       
 
       </main>
