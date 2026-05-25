@@ -15,7 +15,6 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  // Lista completa de todas las secciones para el Navbar
   const secciones = [
     { id: 'sintesis', nombre: 'Síntesis Visual' },
     { id: 'resumen', nombre: '1. Resumen' },
@@ -28,11 +27,11 @@ function App() {
     { id: 'prompts', nombre: '8. Prompts IA' }
   ]
 
-  // Función para hacer scroll exacto a cada componente
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const topPos = element.getBoundingClientRect().top + window.scrollY - 140; // Espacio extra para que el nav no tape el título
+      // Ajuste de espacio porque ahora el encabezado es más alto
+      const topPos = element.getBoundingClientRect().top + window.scrollY - 180; 
       window.scrollTo({ top: topPos, behavior: 'smooth' });
     }
     setIsMenuOpen(false);
@@ -42,79 +41,72 @@ function App() {
     <div className={isDarkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-rose-50 dark:bg-[#0b0714] flex flex-col font-sans transition-colors duration-500">
         
-        {/* NAVBAR STICKY CORREGIDO (Colores sólidos y todos los links) */}
-        <nav className="sticky top-0 z-50 bg-rose-50 dark:bg-[#0b0714] border-b-2 border-pink-100 dark:border-[#3b2853] transition-colors duration-500 shadow-sm py-3">
-          <div className="max-w-6xl mx-auto px-6">
+        {/* ENCABEZADO ORIGINAL (Ahora es Sticky y contiene la navegación) */}
+        <header className="sticky top-0 z-50 bg-white dark:bg-[#160d27] border-b-2 border-pink-100 dark:border-[#3b2853] py-6 px-6 shadow-sm transition-colors duration-500">
+          <div className="max-w-4xl mx-auto flex flex-col gap-4">
             
-            {/* Fila superior: Logo y Botones */}
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-3">
-                <Shield size={28} className="text-pink-400" />
-                <span className="font-extrabold text-slate-700 dark:text-purple-300 text-lg">
-                  Informe EMCO
-                </span>
+            {/* Parte Superior del Encabezado (Título y Botones) */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-pink-100 dark:bg-[#23153c] rounded-full">
+                  <Shield size={36} className="text-pink-400 dark:text-purple-400" />
+                </div>
+                <div>
+                  <h1 className="text-2xl md:text-3xl font-extrabold text-slate-700 dark:text-purple-200 tracking-tight">
+                    Evaluación 2 - Unidad 2
+                  </h1>
+                  <p className="text-pink-400 dark:text-pink-300 font-medium mt-1 hidden sm:block">
+                    T13034 Fundamentos de Seguridad de la Información
+                  </p>
+                </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <button 
                   onClick={() => setIsDarkMode(!isDarkMode)}
-                  className="p-2 bg-pink-100 text-pink-500 hover:bg-pink-200 dark:bg-[#23153c] dark:text-purple-300 dark:hover:bg-[#3b2853] rounded-full transition-all duration-300 hover:scale-110 shadow-sm"
+                  className="p-3 bg-pink-50 text-pink-500 hover:bg-pink-100 dark:bg-[#23153c] dark:text-purple-300 dark:hover:bg-[#3b2853] rounded-full transition-all duration-300 hover:scale-110 shadow-sm"
                   title="Cambiar tema"
                 >
-                  {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                  {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
                 </button>
 
-                {/* Botón menú móviles */}
                 <button 
-                  className="lg:hidden p-2 text-slate-600 dark:text-purple-300 bg-white dark:bg-[#23153c] rounded-full shadow-sm border border-pink-100 dark:border-[#3b2853]"
+                  className="lg:hidden p-3 text-pink-500 bg-pink-50 dark:bg-[#23153c] dark:text-purple-300 rounded-full"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
-                  {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                  {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
               </div>
             </div>
 
-            {/* Fila inferior: Links de navegación (Escritorio) - Formato Píldoras */}
-            <div className="hidden lg:flex flex-wrap items-center gap-2 mt-3">
+            {/* Parte Inferior del Encabezado (Navegación en Píldoras Rosas) */}
+            <div className="hidden lg:flex flex-wrap items-center gap-2 mt-2">
               {secciones.map((seccion) => (
                 <button 
                   key={seccion.id}
                   onClick={() => scrollToSection(seccion.id)} 
-                  className="px-3 py-1.5 text-xs font-bold text-slate-600 dark:text-purple-300 bg-white dark:bg-[#160d27] border border-pink-100 dark:border-[#3b2853] rounded-full hover:bg-pink-100 hover:text-pink-600 dark:hover:bg-[#3b2853] dark:hover:text-purple-100 transition-colors shadow-sm"
+                  className="px-4 py-2 text-xs font-bold text-slate-600 bg-rose-50 border border-pink-100 hover:bg-pink-100 hover:text-pink-600 rounded-full dark:text-purple-300 dark:bg-[#23153c] dark:border-[#3b2853] dark:hover:bg-[#3b2853] dark:hover:text-purple-100 transition-colors shadow-sm"
                 >
                   {seccion.nombre}
                 </button>
               ))}
             </div>
-          </div>
 
-          {/* Menú Desplegable (Móviles) */}
-          {isMenuOpen && (
-            <div className="lg:hidden px-6 py-4 bg-white dark:bg-[#160d27] border-t border-pink-100 dark:border-[#3b2853] flex flex-col gap-3 font-bold text-sm text-slate-600 dark:text-purple-300 shadow-lg absolute w-full left-0 mt-3">
-              {secciones.map((seccion) => (
-                <button 
-                  key={seccion.id}
-                  onClick={() => scrollToSection(seccion.id)} 
-                  className="text-left py-2 border-b border-pink-50 dark:border-[#23153c] hover:text-pink-500 dark:hover:text-pink-300 last:border-0"
-                >
-                  {seccion.nombre}
-                </button>
-              ))}
-            </div>
-          )}
-        </nav>
+            {/* Menú Móvil */}
+            {isMenuOpen && (
+              <div className="lg:hidden flex flex-col gap-2 mt-4 pt-4 border-t border-pink-50 dark:border-[#3b2853]">
+                {secciones.map((seccion) => (
+                  <button 
+                    key={seccion.id}
+                    onClick={() => scrollToSection(seccion.id)} 
+                    className="text-left py-2 font-bold text-slate-600 dark:text-purple-300 hover:text-pink-500 dark:hover:text-pink-300"
+                  >
+                    {seccion.nombre}
+                  </button>
+                ))}
+              </div>
+            )}
 
-        {/* Encabezado Principal */}
-        <header className="bg-white border-b-2 border-pink-100 py-12 px-6 shadow-sm relative transition-colors duration-500 dark:bg-[#160d27] dark:border-[#3b2853]">
-          <div className="max-w-4xl mx-auto flex items-center gap-4">
-            <div>
-              <h1 className="text-4xl font-extrabold text-slate-700 dark:text-purple-200 tracking-tight">
-                Análisis de Ciberseguridad
-              </h1>
-              <p className="text-pink-400 dark:text-pink-300 font-medium mt-2 text-lg">
-                T13034 Fundamentos de Seguridad de la Información
-              </p>
-            </div>
           </div>
         </header>
 
@@ -134,59 +126,51 @@ function App() {
             </p>
           </div>
 
-          <div id="sintesis" className="scroll-mt-32">
+          <div id="sintesis" className="scroll-mt-48">
             <SintesisVisual />
           </div>
 
-          {/* Contenedor de Componentes con IDs para el Scroll */}
           <div className="space-y-6">
             <h2 className="text-2xl font-extrabold text-slate-700 dark:text-purple-200 border-b border-pink-100 dark:border-[#3b2853] pb-3 mb-6">
               Detalle del Informe Legal
             </h2>
             
-            <div id="resumen" className="scroll-mt-36">
+            <div id="resumen" className="scroll-mt-48">
               <AccordionItem title="1. Resumen Ejecutivo" icon={Shield}>
                 <Resumen />
               </AccordionItem>
             </div>
-            
-            <div id="marco" className="scroll-mt-36">
+            <div id="marco" className="scroll-mt-48">
               <AccordionItem title="2. Marco Normativo" icon={Scale}>
                 <Marco />
               </AccordionItem>
             </div>
-            
-            <div id="delitos" className="scroll-mt-36">
+            <div id="delitos" className="scroll-mt-48">
               <AccordionItem title="3. Tipificación de Delitos" icon={Gavel}>
                 <Delitos />
               </AccordionItem>
             </div>
-            
-            <div id="comparacion" className="scroll-mt-36">
+            <div id="comparacion" className="scroll-mt-48">
               <AccordionItem title="4. Comparación de Marcos" icon={TableProperties}>
                 <Comparacion />
               </AccordionItem>
             </div>
-            
-            <div id="responsabilidades" className="scroll-mt-36">
+            <div id="responsabilidades" className="scroll-mt-48">
               <AccordionItem title="5. Responsabilidades Legales" icon={Briefcase}>
                 <Responsabilidades />
               </AccordionItem>
             </div>
-            
-            <div id="datos" className="scroll-mt-36">
+            <div id="datos" className="scroll-mt-48">
               <AccordionItem title="6. Tratamiento de Datos (ARCO)" icon={Database}>
                 <Datos />
               </AccordionItem>
             </div>
-            
-            <div id="conclusiones" className="scroll-mt-36">
+            <div id="conclusiones" className="scroll-mt-48">
               <AccordionItem title="7. Conclusiones y Recomendaciones" icon={Lightbulb}>
                 <Conclusiones />
               </AccordionItem>
             </div>
-            
-            <div id="prompts" className="scroll-mt-36">
+            <div id="prompts" className="scroll-mt-48">
               <AccordionItem title="8. Bitácora de Prompts" icon={Sparkles}>
                 <Prompts />
               </AccordionItem>
