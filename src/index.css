@@ -1,32 +1,4 @@
-
 @import "tailwindcss";
 
-/* === ESTILOS DEL MODO OSCURO COZY === */
-/* Fondo principal y textos base */
-.dark .bg-rose-50 { background-color: #0b0714 !important; }
-.dark .text-slate-700 { color: #f3e8ff !important; } /* Lavanda claro */
-.dark .text-slate-600 { color: #d8b4fe !important; } /* Morado suave */
-.dark .text-slate-500 { color: #c084fc !important; } /* Morado brillante */
-
-/* Tarjetas y componentes (reemplaza el blanco por morado profundo) */
-.dark .bg-white { 
-  background-color: #160d27 !important; 
-  border-color: #3b2853 !important; 
-}
-
-/* Fondos secundarios de las alertas, tablas y secciones */
-.dark .bg-slate-50, .dark .bg-pink-50, .dark .bg-violet-50, .dark .bg-emerald-50, .dark .bg-fuchsia-50,
-.dark .bg-rose-50\/40, .dark .bg-violet-50\/40, .dark .bg-pink-50\/50, .dark .bg-rose-50\/50, .dark .bg-violet-50\/50, .dark .bg-emerald-50\/50 { 
-  background-color: #23153c !important; 
-  border-color: #4a2e6b !important; 
-}
-
-/* Bordes generales */
-.dark .border-pink-100, .dark .border-pink-50, .dark .border-slate-100, .dark .border-slate-200 { 
-  border-color: #3b2853 !important; 
-}
-
-/* Transiciones suaves para que el cambio no sea brusco */
-* {
-  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
-}
+/* Obligamos a Tailwind a hacerle caso a nuestro botón y no a Windows */
+@variant dark (&:where(.dark, .dark *));

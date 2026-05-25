@@ -16,22 +16,21 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const secciones = [
-    { id: 'sintesis', nombre: 'Síntesis Visual' },
-    { id: 'resumen', nombre: '1. Resumen' },
-    { id: 'marco', nombre: '2. Marco Legal' },
-    { id: 'delitos', nombre: '3. Delitos' },
-    { id: 'comparacion', nombre: '4. Comparación' },
-    { id: 'responsabilidades', nombre: '5. Actores' },
-    { id: 'datos', nombre: '6. Datos ARCO' },
-    { id: 'conclusiones', nombre: '7. Conclusiones' },
-    { id: 'prompts', nombre: '8. Prompts IA' }
+    { id: 'sintesis', nombre: 'Síntesis' },
+    { id: 'resumen', nombre: 'Resumen' },
+    { id: 'marco', nombre: 'Leyes' },
+    { id: 'delitos', nombre: 'Delitos' },
+    { id: 'comparacion', nombre: 'Comparación' },
+    { id: 'responsabilidades', nombre: 'Actores' },
+    { id: 'datos', nombre: 'Datos' },
+    { id: 'conclusiones', nombre: 'Conclusión' },
+    { id: 'prompts', nombre: 'IA' }
   ]
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      // Ajuste de espacio porque ahora el encabezado es más alto
-      const topPos = element.getBoundingClientRect().top + window.scrollY - 180; 
+      const topPos = element.getBoundingClientRect().top + window.scrollY - 160; 
       window.scrollTo({ top: topPos, behavior: 'smooth' });
     }
     setIsMenuOpen(false);
@@ -41,65 +40,59 @@ function App() {
     <div className={isDarkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-rose-50 dark:bg-[#0b0714] flex flex-col font-sans transition-colors duration-500">
         
-        {/* ENCABEZADO ORIGINAL (Ahora es Sticky y contiene la navegación) */}
-        <header className="sticky top-0 z-50 bg-white dark:bg-[#160d27] border-b-2 border-pink-100 dark:border-[#3b2853] py-6 px-6 shadow-sm transition-colors duration-500">
-          <div className="max-w-4xl mx-auto flex flex-col gap-4">
+        {/* ENCABEZADO STICKY ROSA */}
+        <header className="sticky top-0 z-50 bg-pink-50 dark:bg-[#160d27] border-b-2 border-pink-100 dark:border-[#3b2853] py-4 px-6 shadow-sm transition-colors duration-500">
+          <div className="max-w-5xl mx-auto flex flex-col gap-3">
             
-            {/* Parte Superior del Encabezado (Título y Botones) */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-pink-100 dark:bg-[#23153c] rounded-full">
-                  <Shield size={36} className="text-pink-400 dark:text-purple-400" />
+                <div className="p-2 bg-white dark:bg-[#23153c] rounded-full shadow-sm">
+                  <Shield size={32} className="text-pink-400 dark:text-purple-400" />
                 </div>
                 <div>
-                  <h1 className="text-2xl md:text-3xl font-extrabold text-slate-700 dark:text-purple-200 tracking-tight">
-                    Evaluación 2 - Unidad 2
+                  <h1 className="text-xl md:text-2xl font-extrabold text-slate-700 dark:text-purple-200 tracking-tight">
+                    Evaluación 2 - EMCO
                   </h1>
-                  <p className="text-pink-400 dark:text-pink-300 font-medium mt-1 hidden sm:block">
-                    T13034 Fundamentos de Seguridad de la Información
-                  </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <button 
                   onClick={() => setIsDarkMode(!isDarkMode)}
-                  className="p-3 bg-pink-50 text-pink-500 hover:bg-pink-100 dark:bg-[#23153c] dark:text-purple-300 dark:hover:bg-[#3b2853] rounded-full transition-all duration-300 hover:scale-110 shadow-sm"
-                  title="Cambiar tema"
+                  className="p-2 bg-white text-pink-500 hover:bg-pink-100 dark:bg-[#23153c] dark:text-purple-300 dark:hover:bg-[#3b2853] rounded-full transition-all duration-300 hover:scale-110 shadow-sm"
                 >
-                  {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
+                  {isDarkMode ? <Sun size={22} /> : <Moon size={22} />}
                 </button>
 
                 <button 
-                  className="lg:hidden p-3 text-pink-500 bg-pink-50 dark:bg-[#23153c] dark:text-purple-300 rounded-full"
+                  className="lg:hidden p-2 text-pink-500 bg-white dark:bg-[#23153c] dark:text-purple-300 rounded-full shadow-sm"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
-                  {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                  {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
                 </button>
               </div>
             </div>
 
-            {/* Parte Inferior del Encabezado (Navegación en Píldoras Rosas) */}
-            <div className="hidden lg:flex flex-wrap items-center gap-2 mt-2">
+            {/* NAVEGACIÓN EN UNA SOLA LÍNEA */}
+            <div className="hidden lg:flex overflow-x-auto whitespace-nowrap scrollbar-hide items-center gap-6 py-2 border-t border-pink-100/50 dark:border-[#3b2853]/50 mt-1">
               {secciones.map((seccion) => (
                 <button 
                   key={seccion.id}
                   onClick={() => scrollToSection(seccion.id)} 
-                  className="px-4 py-2 text-xs font-bold text-slate-600 bg-rose-50 border border-pink-100 hover:bg-pink-100 hover:text-pink-600 rounded-full dark:text-purple-300 dark:bg-[#23153c] dark:border-[#3b2853] dark:hover:bg-[#3b2853] dark:hover:text-purple-100 transition-colors shadow-sm"
+                  className="text-sm font-bold text-slate-600 dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 transition-colors"
                 >
                   {seccion.nombre}
                 </button>
               ))}
             </div>
 
-            {/* Menú Móvil */}
             {isMenuOpen && (
-              <div className="lg:hidden flex flex-col gap-2 mt-4 pt-4 border-t border-pink-50 dark:border-[#3b2853]">
+              <div className="lg:hidden flex flex-col gap-2 mt-2 pt-2 border-t border-pink-100 dark:border-[#3b2853]">
                 {secciones.map((seccion) => (
                   <button 
                     key={seccion.id}
                     onClick={() => scrollToSection(seccion.id)} 
-                    className="text-left py-2 font-bold text-slate-600 dark:text-purple-300 hover:text-pink-500 dark:hover:text-pink-300"
+                    className="text-left py-2 font-bold text-slate-600 dark:text-purple-300 hover:text-pink-500"
                   >
                     {seccion.nombre}
                   </button>
@@ -110,10 +103,9 @@ function App() {
           </div>
         </header>
 
-        <main className="flex-1 max-w-4xl mx-auto px-6 py-10 w-full space-y-12">
+        <main className="flex-1 max-w-4xl mx-auto px-6 py-8 w-full space-y-10">
           
-          {/* Bienvenida */}
-          <div className="bg-white rounded-3xl shadow-sm border border-pink-100 p-8 transition-colors duration-500 dark:bg-[#160d27] dark:border-[#3b2853]">
+          <div className="bg-white dark:bg-[#160d27] rounded-3xl shadow-sm border border-pink-100 dark:border-[#3b2853] p-8 transition-colors duration-500">
             <div className="flex items-center gap-3 mb-4">
               <BookOpen className="text-violet-400" />
               <h2 className="text-xl font-bold text-slate-700 dark:text-purple-200">
@@ -126,7 +118,7 @@ function App() {
             </p>
           </div>
 
-          <div id="sintesis" className="scroll-mt-48">
+          <div id="sintesis" className="scroll-mt-40">
             <SintesisVisual />
           </div>
 
@@ -135,51 +127,19 @@ function App() {
               Detalle del Informe Legal
             </h2>
             
-            <div id="resumen" className="scroll-mt-48">
-              <AccordionItem title="1. Resumen Ejecutivo" icon={Shield}>
-                <Resumen />
-              </AccordionItem>
-            </div>
-            <div id="marco" className="scroll-mt-48">
-              <AccordionItem title="2. Marco Normativo" icon={Scale}>
-                <Marco />
-              </AccordionItem>
-            </div>
-            <div id="delitos" className="scroll-mt-48">
-              <AccordionItem title="3. Tipificación de Delitos" icon={Gavel}>
-                <Delitos />
-              </AccordionItem>
-            </div>
-            <div id="comparacion" className="scroll-mt-48">
-              <AccordionItem title="4. Comparación de Marcos" icon={TableProperties}>
-                <Comparacion />
-              </AccordionItem>
-            </div>
-            <div id="responsabilidades" className="scroll-mt-48">
-              <AccordionItem title="5. Responsabilidades Legales" icon={Briefcase}>
-                <Responsabilidades />
-              </AccordionItem>
-            </div>
-            <div id="datos" className="scroll-mt-48">
-              <AccordionItem title="6. Tratamiento de Datos (ARCO)" icon={Database}>
-                <Datos />
-              </AccordionItem>
-            </div>
-            <div id="conclusiones" className="scroll-mt-48">
-              <AccordionItem title="7. Conclusiones y Recomendaciones" icon={Lightbulb}>
-                <Conclusiones />
-              </AccordionItem>
-            </div>
-            <div id="prompts" className="scroll-mt-48">
-              <AccordionItem title="8. Bitácora de Prompts" icon={Sparkles}>
-                <Prompts />
-              </AccordionItem>
-            </div>
+            <div id="resumen" className="scroll-mt-40"><AccordionItem title="1. Resumen Ejecutivo" icon={Shield}><Resumen /></AccordionItem></div>
+            <div id="marco" className="scroll-mt-40"><AccordionItem title="2. Marco Normativo" icon={Scale}><Marco /></AccordionItem></div>
+            <div id="delitos" className="scroll-mt-40"><AccordionItem title="3. Tipificación de Delitos" icon={Gavel}><Delitos /></AccordionItem></div>
+            <div id="comparacion" className="scroll-mt-40"><AccordionItem title="4. Comparación de Marcos" icon={TableProperties}><Comparacion /></AccordionItem></div>
+            <div id="responsabilidades" className="scroll-mt-40"><AccordionItem title="5. Responsabilidades Legales" icon={Briefcase}><Responsabilidades /></AccordionItem></div>
+            <div id="datos" className="scroll-mt-40"><AccordionItem title="6. Tratamiento de Datos (ARCO)" icon={Database}><Datos /></AccordionItem></div>
+            <div id="conclusiones" className="scroll-mt-40"><AccordionItem title="7. Conclusiones y Recomendaciones" icon={Lightbulb}><Conclusiones /></AccordionItem></div>
+            <div id="prompts" className="scroll-mt-40"><AccordionItem title="8. Bitácora de Prompts" icon={Sparkles}><Prompts /></AccordionItem></div>
           </div>
 
         </main>
 
-        <footer className="bg-pink-50 dark:bg-[#23153c] border-t border-pink-100 dark:border-[#3b2853] text-slate-500 dark:text-purple-300 text-sm py-8 px-6 mt-auto transition-colors duration-500">
+        <footer className="bg-pink-50 dark:bg-[#160d27] border-t border-pink-100 dark:border-[#3b2853] text-slate-500 dark:text-purple-300 text-sm py-8 px-6 mt-auto transition-colors duration-500">
           <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center font-medium gap-4">
             <a 
               href="https://github.com/fiorellaviera" 
